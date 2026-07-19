@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PopJacaré | My Story</title>
+
+  <!-- O segredo está aqui: ../ para voltar uma pasta e achar o CSS -->
+  <link rel="stylesheet" href="../style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+  <style>
+    .pt-text { display: none; }
+    body.lang-pt .en-text { display: none; }
+    body.lang-pt .pt-text { display: inline-block; }
+
+    .language-toggle {
+      display: flex;
+      align-items: center;
+      background-color: #121212;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 30px;
+      padding: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .language-toggle span {
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 20px;
+      color: var(--text-muted);
+      transition: all 0.3s ease;
+    }
+
+    .language-toggle span.active {
+      background-color: var(--accent-gold);
+      color: #121212;
+    }
+
+    /* Engenharia UI/UX para Centralizar Menu e Fixar Tradutor à Direita sem conflitos */
+    @media (min-width: 901px) {
+      .nav-content {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+      }
+      .desktop-menu {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex !important;
+        gap: 32px;
+      }
+      .desktop-menu a { margin: 0 !important; }
+      .header-lang-wrapper { display: block !important; }
+    }
+    @media (max-width: 900px) {
+      .header-lang-wrapper { display: none !important; }
+    }
+
+    .story-page {
+      padding-top: 150px;
+      padding-bottom: 80px;
+    }
+
+    .story-container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: var(--bg-alt);
+      padding: 60px;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.02);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    }
+
+    .story-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .story-title h1 {
+      font-size: 3rem;
+      color: var(--accent-gold);
+      margin-bottom: 10px;
+    }
+
+    .story-content p {
+      font-size: 1.15rem;
+      margin-bottom: 1.8rem;
+      color: #d1d5db;
+      line-height: 1.8;
+    }
+
+    .highlight-quote {
+      text-align: center;
+      font-size: 1.7rem !important;
+      font-family: var(--font-heading);
+      color: var(--accent-gold) !important;
+      margin: 40px 0;
+      padding: 20px;
+      border-top: 1px solid rgba(212, 175, 55, 0.2);
+      border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+    }
+
+    /* Redesign de Elite do bloco "Welcome to POP Jacaré" */
+    .welcome-premium-box {
+      text-align: center;
+      margin-top: 60px;
+      margin-bottom: 40px;
+      padding: 45px 30px;
+      border-radius: 12px;
+      border: 2px solid var(--accent-gold);
+      background: linear-gradient(180deg, rgba(214, 175, 55, 0.04) 0%, rgba(7, 7, 7, 0.95) 100%);
+      box-shadow: 0 0 30px rgba(214, 175, 55, 0.15);
+      position: relative;
+      overflow: hidden;
+    }
+    .welcome-premium-box::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
+    }
+    .welcome-premium-box h2 {
+      font-size: 2.4rem;
+      color: #ffffff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 15px;
+    }
+    .welcome-premium-box h2 .sub-text {
+      display: block;
+      font-size: 1.35rem;
+      color: var(--accent-gold);
+      text-transform: none;
+      letter-spacing: 0;
+      margin-top: 10px;
+      font-family: var(--font-body);
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .story-container { padding: 30px 20px; }
+      .welcome-premium-box h2 { font-size: 1.8rem; }
+      .welcome-premium-box h2 .sub-text { font-size: 1.1rem; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- CABEÇALHO COM NAVEGAÇÃO -->
+  <header id="navbar" class="scrolled">
+    <div class="container nav-content">
+      <a href="../index.html" class="logo" style="text-decoration: none;">PopJacaré</a>
+
+      <!-- Menu com links centralizados por CSS -->
+      <nav class="desktop-menu">
+        <a href="../index.html">
+          <span class="en-text">Home</span>
+          <span class="pt-text">Início</span>
+        </a>
+        <a href="restaurant.html">
+          <span class="en-text">Restaurant</span>
+          <span class="pt-text">Restaurante</span>
+        </a>
+        <a href="gameverse.html">GameVerse</a>
+      </nav>
+
+      <!-- Div que fixa a barra do tradutor na lateral direita do Header -->
+      <div class="header-lang-wrapper">
+        <div class="language-toggle" id="lang-btn">
+          <span class="lang-en active">EN</span>
+          <span class="lang-pt">PT</span>
+        </div>
+      </div>
+
+      <button class="mobile-menu-btn" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="mobile-menu">
+        <div class="language-toggle" id="lang-btn-mobile" style="margin-left: 0; margin-bottom: 20px; width: fit-content;">
+          <span class="lang-en active">EN</span>
+          <span class="lang-pt">PT</span>
+        </div>
+        <a href="../index.html"><span class="en-text">Home</span><span class="pt-text">Início</span></a>
+        <a href="restaurant.html"><span class="en-text">Restaurant</span><span class="pt-text">Restaurante</span></a>
+        <a href="gameverse.html">GameVerse</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="story-page">
+    <div class="container">
+      <div class="story-container">
+        <div class="story-title">
+          <h1>
+            <span class="en-text">About Me</span>
+            <span class="pt-text">Minha História</span>
+          </h1>
+          <p>
+            <span class="en-text">From Queens to Jacaré.</span>
+            <span class="pt-text">Do Queens ao Jacarezinho.</span>
+          </p>
+        </div>
+
+        <div class="story-content">
+          <p>
+            <span class="en-text">I was born and raised in South Jamaica, Queens, New York, one of the five boroughs that make up New York City. Queens is known worldwide for raising legendary artists like Run-DMC, LL Cool J, Nas, Mobb Deep, and 50 Cent. Growing up there taught me resilience, adaptability, and how to navigate very different worlds.</span>
+            <span class="pt-text">Nasci e cresci em South Jamaica, Queens, Nova York, um dos cinco distritos que compõem a cidade de Nova York. Queens é conhecido mundialmente por revelar artistas lendários como Run-DMC, LL Cool J, Nas, Mobb Deep e 50 Cent. Crescer lá me ensinou resiliência, adaptabilidade e como navegar em mundos muito diferentes.</span>
+          </p>
+
+          <p>
+            <span class="en-text">After high school, I eventually left New York and built a career as an Account Analyst at a prestigious reinsurance company in Princeton, New Jersey. Like many Americans, I knew very little about Brazil. That changed in 2002 when I came across the movie <em>City of God</em>.</span>
+            <span class="pt-text">Depois do ensino médio, acabei saindo de Nova York e construí uma carreira como Analista de Contas em uma prestigiada empresa de resseguros em Princeton, Nova Jersey. Como muitos americanos, eu sabia muito pouco sobre o Brasil. Isso mudou em 2002, quando me deparei com o filme <em>Cidade de Deus</em>.</span>
+          </p>
+
+          <p>
+            <span class="en-text">What started as curiosity quickly turned into fascination. The movie introduced me to a side of Brazil that most foreigners never see and inspired me to learn more about the country's people, communities, history, and culture. Over time, that curiosity evolved into a personal journey that would change my life forever.</span>
+            <span class="pt-text">O que começou como curiosidade rapidamente se transformou em fascínio. O filme me apresentou a um lado do Brasil que a maioria dos estrangeiros nunca vê e me inspirou a aprender mais sobre o povo, as comunidades, a história e a cultura do país. Com o tempo, essa curiosidade se transformou em uma jornada pessoal que mudaria minha vida para sempre.</span>
+          </p>
+
+          <p>
+            <span class="en-text">Years later, I traveled to Brazil and discovered something far more important than beautiful beaches, world-famous landmarks, or incredible food.</span>
+            <span class="pt-text">Anos depois, viajei para o Brasil e descobri algo muito mais importante do que belas praias, pontos turísticos mundialmente famosos ou comida incrível.</span>
+          </p>
+
+          <p class="highlight-quote">
+            <span class="en-text">I found my soulmate.</span>
+            <span class="pt-text">Encontrei minha alma gêmea.</span>
+          </p>
+
+          <p>
+            <span class="en-text">What began as an interest in Brazil became a new chapter in my life. I fell in love, built a family, and eventually made Jacaré, in Rio de Janeiro, a place I proudly call home. Together, my wife and I started building businesses in the community, creating opportunities to bring people together through food, entertainment, entrepreneurship, and cultural exchange.</span>
+            <span class="pt-text">O que começou como um interesse pelo Brasil se tornou um novo capítulo da minha vida. Me apaixonei, construí uma família e, eventualmente, fiz de Jacaré, no Rio de Janeiro, um lugar que orgulhosamente chamo de lar. Juntos, minha esposa e eu começamos a construir negócios na comunidade, criando oportunidades para unir pessoas por meio da gastronomia, entretenimento, empreendedorismo e intercâmbio cultural.</span>
+          </p>
+
+          <p>
+            <span class="en-text">POP Jacaré was born from this experience.</span>
+            <span class="pt-text">O POP Jacaré nasceu dessa experiência.</span>
+          </p>
+
+          <p>
+            <span class="en-text">This website is more than one person’s story. It is about connecting cultures, shattering stereotypes, highlighting local businesses, sharing authentic experiences, and showing that meaningful relationships can be built beyond languages, countries, and backgrounds.</span>
+            <span class="pt-text">Este site é mais do que a história de uma pessoa. É sobre conectar culturas, quebrar estereótipos, destacar negócios locais, compartilhar experiências autênticas e mostrar que relacionamentos significativos podem ser construídos além de idiomas, países e origens.</span>
+          </p>
+
+          <p>
+            <span class="en-text">Whether you are a Brazilian curious about life in the United States, an American interested in Brazil, or simply someone who enjoys discovering new perspectives, I hope you find something valuable here.</span>
+            <span class="pt-text">Seja você um brasileiro curioso sobre a vida nos Estados Unidos, um americano interessado no Brasil ou simplesmente alguém que gosta de descobrir novas perspectivas, espero que encontre algo valioso aqui.</span>
+          </p>
+
+          <!-- Bloco com Design Premium e Bordas Elevadas -->
+          <div class="welcome-premium-box">
+            <h2>
+              <span class="en-text">Welcome to POP Jacaré <span class="sub-text">where two worlds meet.</span></span>
+              <span class="pt-text">Bem-vindo ao POP Jacaré <span class="sub-text">onde dois mundos se encontram.</span></span>
+            </h2>
+            <a href="../index.html" class="btn-primary" style="margin-top: 15px;">
+              <span class="en-text">Back to Home</span>
+              <span class="pt-text">Voltar ao Início</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCRIPT DO MENU MOBILE E DO TRADUTOR -->
+  <script>
+    function toggleLanguage() {
+      const body = document.body;
+      body.classList.toggle('lang-pt');
+
+      const isPt = body.classList.contains('lang-pt');
+      document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('active', !isPt));
+      document.querySelectorAll('.lang-pt').forEach(el => el.classList.toggle('active', isPt));
+
+      document.documentElement.lang = isPt ? 'pt-BR' : 'en';
+    }
+
+    document.getElementById('lang-btn').addEventListener('click', toggleLanguage);
+    document.getElementById('lang-btn-mobile').addEventListener('click', toggleLanguage);
+
+    const btnMobile = document.querySelector('.mobile-menu-btn');
+    const menuMobile = document.querySelector('.mobile-menu');
+
+    if (btnMobile && menuMobile) {
+      btnMobile.addEventListener('click', () => {
+        menuMobile.classList.toggle('active');
+        const spans = btnMobile.querySelectorAll('span');
+        if (menuMobile.classList.contains('active')) {
+          spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+          spans[1].style.opacity = '0';
+          spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
+        } else {
+          spans[0].style.transform = 'none';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = 'none';
+        }
+      });
+
+      const linksMobile = menuMobile.querySelectorAll('a');
+      linksMobile.forEach(link => {
+        link.addEventListener('click', () => {
+          menuMobile.classList.remove('active');
+          const spans = btnMobile.querySelectorAll('span');
+          spans[0].style.transform = 'none';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = 'none';
+        });
+      });
+    }
+  </script>
+</body>
+
+</html>

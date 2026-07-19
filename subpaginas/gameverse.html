@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en" style="scroll-behavior: smooth;">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PopJacaré | GameVerse Lounge</title>
+
+  <link rel="stylesheet" href="../style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* Controle de Idioma UI/UX */
+    .pt-text { display: none; }
+    body.lang-pt .en-text { display: none; }
+    body.lang-pt .pt-text { display: inline-block; }
+
+    .language-toggle {
+      display: flex; align-items: center; background-color: #121212;
+      border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 30px;
+      padding: 4px; cursor: pointer; transition: all 0.3s ease;
+    }
+    .language-toggle span {
+      padding: 6px 12px; font-size: 0.85rem; font-weight: 600;
+      border-radius: 20px; color: var(--text-muted); transition: all 0.3s ease;
+    }
+    .language-toggle span.active {
+      background-color: var(--accent-gold); color: #121212;
+    }
+
+    /* Alinhamento da Navbar */
+    @media (min-width: 901px) {
+      .nav-content { display: flex !important; justify-content: space-between; align-items: center; position: relative; }
+      .desktop-menu { position: absolute; left: 50%; transform: translateX(-50%); display: flex !important; gap: 32px; }
+      .header-lang-wrapper { display: block !important; }
+    }
+    @media (max-width: 900px) {
+      .header-lang-wrapper { display: none !important; }
+    }
+
+    /* =========================================
+       UI/UX: SISTEMA DE CORES ESCURAS (LAYERS)
+       ========================================= */
+    :root {
+      --bg-level-0: #080808; 
+      --bg-level-1: #121212; 
+      --bg-level-2: #1c1c1c; 
+      --bg-level-3: #262626; 
+      --border-dark: #2a2a2a;
+      --accent-gamer: #d4af37; 
+    }
+
+    body {
+      background-color: var(--bg-level-0) !important;
+      color: #e5e5e5;
+    }
+
+    /* HERO SECTION */
+    .hero-lounge {
+      padding-top: 200px;
+      padding-bottom: 120px;
+      text-align: center;
+      background: radial-gradient(circle at 50% 0%, #1a1a1a 0%, var(--bg-level-0) 70%);
+      border-bottom: 1px solid var(--border-dark);
+    }
+    
+    .hero-title {
+      font-size: 4.5rem;
+      font-family: var(--font-heading);
+      color: #fff;
+      margin-bottom: 25px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-weight: 900;
+      line-height: 1.1;
+    }
+    
+    .hero-title span {
+      color: var(--accent-gamer);
+      text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
+    }
+
+    .hero-subtitle {
+      font-size: 1.3rem;
+      color: #a3a3a3;
+      max-width: 700px;
+      margin: 0 auto 60px auto;
+      line-height: 1.6;
+    }
+
+    /* FEATURES GRID (Profissional) */
+    .features-bar {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .feature-item {
+      background-color: rgba(28, 28, 28, 0.7);
+      backdrop-filter: blur(10px);
+      border: 1px solid var(--border-dark);
+      padding: 40px 30px;
+      border-radius: 20px;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+      z-index: 1;
+    }
+
+    .feature-item::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%; width: 50%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.08), transparent);
+      transform: skewX(-20deg);
+      transition: all 0.5s ease;
+      z-index: -1;
+    }
+
+    .feature-item:hover {
+      transform: translateY(-10px);
+      border-color: var(--accent-gamer);
+      background-color: var(--bg-level-2);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(212, 175, 55, 0.15);
+    }
+
+    .feature-item:hover::before {
+      left: 200%;
+    }
+
+    .feature-icon {
+      margin-bottom: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      transition: transform 0.4s ease;
+    }
+
+    .feature-item:hover .feature-icon {
+      transform: scale(1.1);
+    }
+
+    .feature-item h4 {
+      color: #fff;
+      font-size: 1.4rem;
+      margin-bottom: 12px;
+      font-family: var(--font-heading);
+      letter-spacing: 1px;
+    }
+
+    .feature-item p {
+      font-size: 1rem;
+      color: #9ca3af;
+      line-height: 1.5;
+    }
+
+    /* ZONAS DA LAN HOUSE */
+    .zones-section {
+      padding: 100px 0;
+      background-color: var(--bg-level-1);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-size: 3rem;
+      font-family: var(--font-heading);
+      color: #fff;
+    }
+
+    .zones-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      padding: 0 20px;
+    }
+
+    .zone-card {
+      background-color: var(--bg-level-2);
+      border: 1px solid var(--border-dark);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.4s ease;
+    }
+
+    .zone-card:hover {
+      border-color: var(--accent-gamer);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+      transform: scale(1.03);
+    }
+
+    .zone-img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-bottom: 1px solid var(--border-dark);
+    }
+
+    .zone-content {
+      padding: 40px 30px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .zone-content h3 {
+      font-size: 1.8rem;
+      color: #fff;
+      margin-bottom: 15px;
+      font-family: var(--font-heading);
+    }
+
+    .zone-content p {
+      color: #a3a3a3;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    /* SEÇÃO DE JOGOS & AMBIENTE */
+    .games-gallery-section {
+      padding: 100px 0;
+      background-color: var(--bg-level-0);
+      border-top: 1px solid var(--border-dark);
+    }
+
+    .games-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      justify-content: center;
+      margin-bottom: 80px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .game-tag {
+      background-color: var(--bg-level-2);
+      border: 1px solid var(--border-dark);
+      padding: 12px 25px;
+      border-radius: 30px;
+      font-weight: 500;
+      color: #ccc;
+      transition: all 0.3s;
+      cursor: default;
+    }
+
+    .game-tag:hover {
+      background-color: var(--accent-gamer);
+      color: #000;
+      border-color: var(--accent-gamer);
+      transform: translateY(-3px);
+    }
+
+    /* Galeria de Fotos */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      padding: 0 20px;
+    }
+
+    .gallery-item {
+      height: 250px;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border-dark);
+    }
+    
+    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; height: 515px; }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .gallery-item:hover img {
+      transform: scale(1.08);
+    }
+
+    /* CTA / RESERVAS */
+    .reservation-cta {
+      text-align: center;
+      padding: 100px 20px;
+      background: linear-gradient(0deg, var(--bg-level-1) 0%, var(--bg-level-0) 100%);
+      border-top: 1px solid var(--border-dark);
+    }
+
+    .btn-reserve {
+      display: inline-block;
+      padding: 15px 40px;
+      font-size: 1.2rem;
+      font-family: var(--font-heading);
+      background-color: transparent;
+      color: #666;
+      border: 2px dashed #444;
+      border-radius: 8px;
+      cursor: not-allowed;
+      margin-top: 30px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 900px) {
+      .hero-title { font-size: 3rem; }
+      .features-bar { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-item:nth-child(1) { grid-column: span 2; height: 300px; }
+      .zone-content { padding: 30px 20px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- CABEÇALHO (Navbar) -->
+  <header id="navbar" class="scrolled">
+    <div class="container nav-content">
+      <a href="../index.html" class="logo" style="text-decoration: none;">PopJacaré</a>
+
+      <nav class="desktop-menu">
+        <a href="../index.html">
+          <span class="en-text">Home</span>
+          <span class="pt-text">Início</span>
+        </a>
+        <a href="restaurant.html">
+          <span class="en-text">Restaurant</span>
+          <span class="pt-text">Restaurante</span>
+        </a>
+        <a href="#" class="active" style="color: var(--accent-gold);">GameVerse</a>
+      </nav>
+
+      <div class="header-lang-wrapper">
+        <div class="language-toggle" id="lang-btn">
+          <span class="lang-en active">EN</span>
+          <span class="lang-pt">PT</span>
+        </div>
+      </div>
+
+      <button class="mobile-menu-btn" aria-label="Abrir menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <div class="mobile-menu">
+        <div class="language-toggle" id="lang-btn-mobile" style="margin-left: 0; margin-bottom: 20px; width: fit-content;">
+          <span class="lang-en active">EN</span>
+          <span class="lang-pt">PT</span>
+        </div>
+        <a href="../index.html"><span class="en-text">Home</span><span class="pt-text">Início</span></a>
+        <a href="restaurant.html"><span class="en-text">Restaurant</span><span class="pt-text">Restaurante</span></a>
+        <a href="#">GameVerse</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-lounge">
+    <div class="container">
+      <h1 class="hero-title">
+        <span class="en-text">Enter the <span>GameVerse</span></span>
+        <span class="pt-text">Entre no <span>GameVerse</span></span>
+      </h1>
+      <p class="hero-subtitle">
+        <span class="en-text">Forget standard gaming cafes. This is your new home base: serious setups, arena vibes, and PopJacaré's menu delivered straight to your keyboard.</span>
+        <span class="pt-text">Esqueça o padrão. Esta é a sua nova base: setups de respeito, clima de arena e o cardápio do PopJacaré entregue direto na sua mesa (só cuidado com o mousepad!).</span>
+      </p>
+
+      <!-- Features interativas e vibrantes -->
+      <div class="features-bar">
+        
+        <div class="feature-item">
+          <!-- SVG Ícone 1: Raio minimalista (Ping) -->
+          <div class="feature-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gamer)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </div>
+          <h4>
+            <span class="en-text">God-Tier Ping</span>
+            <span class="pt-text">Ping Cravado</span>
+          </h4>
+          <p>
+            <span class="en-text">Dedicated fiber so you can't blame lag when you miss a shot. Pure stability.</span>
+            <span class="pt-text">Fibra dedicada de ponta a ponta. Acabou a desculpa de culpar o lag quando pinar o tiro.</span>
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <!-- SVG Ícone 2: Monitor/Setup -->
+          <div class="feature-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gamer)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+          </div>
+          <h4>
+            <span class="en-text">Pro-Level Gear</span>
+            <span class="pt-text">Setup de Respeito</span>
+          </h4>
+          <p>
+            <span class="en-text">Chairs that hug you, maxed-out AC, and hardware tuned for competitive play.</span>
+            <span class="pt-text">Cadeiras que te abraçam, ar no talo e zero distração. Senta, foca e clica.</span>
+          </p>
+        </div>
+
+        <div class="feature-item">
+          <!-- SVG Ícone 3: Bandeja (Serviço na Mesa) -->
+          <div class="feature-icon">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--accent-gamer)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 18h18"></path>
+              <path d="M5 14h14a2 2 0 0 0 2-2V8H3v4a2 2 0 0 0 2 2z"></path>
+              <path d="M12 3v5"></path>
+            </svg>
+          </div>
+          <h4>
+            <span class="en-text">Desk Loot</span>
+            <span class="pt-text">Loot na Mesa</span>
+          </h4>
+          <p>
+            <span class="en-text">Hungry? Order a combo from the restaurant without ever hitting ALT+TAB.</span>
+            <span class="pt-text">Bateu a fome no meio da ranked? Pede um combo nosso sem precisar dar ALT+TAB.</span>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ZONES SECTION -->
+  <section class="zones-section">
+    <div class="container">
+      <div class="section-header">
+        <h2>
+          <span class="en-text">Choose Your Arena</span>
+          <span class="pt-text">Escolha sua Arena</span>
+        </h2>
+      </div>
+
+      <div class="zones-grid">
+        
+        <!-- PC Gamer -->
+        <div class="zone-card">
+          <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?q=80&w=600&auto=format&fit=crop" alt="PC Gamer Setup" class="zone-img">
+          <div class="zone-content">
+            <h3>Pro PC Arena</h3>
+            <p>
+              <span class="en-text">High-performance stations designed for competitive e-sports and AAA gaming. Fluid frames, crystal clear monitors.</span>
+              <span class="pt-text">Máquinas robustas montadas para aguentar o tranco do competitivo e jogos AAA no talo. Foco total nos frames.</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Racing Simulator -->
+        <div class="zone-card">
+          <img src="https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=600&auto=format&fit=crop" alt="Racing Simulator" class="zone-img">
+          <div class="zone-content">
+            <h3>Racing Simulators</h3>
+            <p>
+              <span class="en-text">Full immersion cockpits. Feel every turn, brake, and acceleration like you are actually on the track.</span>
+              <span class="pt-text">Imersão absurda. Cockpits completos onde você sente cada zebra, frenagem e reaceleração da pista.</span>
+            </p>
+          </div>
+        </div>
+
+        <!-- PlayStation Area -->
+        <div class="zone-card">
+          <img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?q=80&w=600&auto=format&fit=crop" alt="PlayStation 5 Area" class="zone-img">
+          <div class="zone-content">
+            <h3>Console Lounge</h3>
+            <p>
+              <span class="en-text">Gather your squad. Massive screens, giant sofas, and the best local multiplayer experience possible.</span>
+              <span class="pt-text">Junte a galera. Telões gigantes, sofás imensos e a melhor experiência para resenhar no multiplayer local.</span>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- JOGOS E FOTOS DO AMBIENTE -->
+  <section class="games-gallery-section">
+    <div class="container">
+      
+      <div class="section-header" style="margin-bottom: 50px;">
+        <h2>
+          <span class="en-text">Available Games</span>
+          <span class="pt-text">Jogos Disponíveis</span>
+        </h2>
+      </div>
+
+      <div class="games-list">
+        <div class="game-tag">Counter-Strike 2</div>
+        <div class="game-tag">Valorant</div>
+        <div class="game-tag">League of Legends</div>
+        <div class="game-tag">Call of Duty: Warzone</div>
+        <div class="game-tag">Fortnite</div>
+        <div class="game-tag">EA Sports FC 24</div>
+        <div class="game-tag">Rocket League</div>
+        <div class="game-tag">Assetto Corsa</div>
+        <div class="game-tag">GTA V Roleplay</div>
+        <div class="game-tag">Rainbow Six Siege</div>
+      </div>
+
+      <div class="section-header" style="margin-bottom: 50px; margin-top: 80px;">
+        <h2>
+          <span class="en-text">The Environment</span>
+          <span class="pt-text">O Ambiente</span>
+        </h2>
+      </div>
+
+      <!-- Galeria Grid -->
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=800&auto=format&fit=crop" alt="Lounge Geral"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=400&auto=format&fit=crop" alt="PC Setup"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?q=80&w=400&auto=format&fit=crop" alt="Teclado"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=400&auto=format&fit=crop" alt="Controle PS5"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1621252179027-94459d278660?q=80&w=400&auto=format&fit=crop" alt="Gamer Led"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA FUTURO (Fase 2) -->
+  <section class="reservation-cta">
+    <div class="container">
+      <h2>
+        <span class="en-text">Online Reservations</span>
+        <span class="pt-text">Reservas Online</span>
+      </h2>
+      <p style="color: #888; margin-top: 15px; font-size: 1.1rem;">
+        <span class="en-text">Secure your favorite machine before leaving home.</span>
+        <span class="pt-text">Garanta sua máquina favorita antes mesmo de sair de casa.</span>
+      </p>
+      <div class="btn-reserve">
+        <span class="en-text">Coming Soon</span>
+        <span class="pt-text">Em Breve</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCRIPT -->
+  <script>
+    // Tradutor
+    function toggleLanguage() {
+      const body = document.body;
+      body.classList.toggle('lang-pt');
+
+      const isPt = body.classList.contains('lang-pt');
+      document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('active', !isPt));
+      document.querySelectorAll('.lang-pt').forEach(el => el.classList.toggle('active', isPt));
+
+      document.documentElement.lang = isPt ? 'pt-BR' : 'en';
+    }
+
+    document.getElementById('lang-btn').addEventListener('click', toggleLanguage);
+    document.getElementById('lang-btn-mobile').addEventListener('click', toggleLanguage);
+
+    // Menu Mobile
+    const btnMobile = document.querySelector('.mobile-menu-btn');
+    const menuMobile = document.querySelector('.mobile-menu');
+
+    if (btnMobile && menuMobile) {
+      btnMobile.addEventListener('click', () => {
+        menuMobile.classList.toggle('active');
+        const spans = btnMobile.querySelectorAll('span');
+        if (menuMobile.classList.contains('active')) {
+          spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
+          spans[1].style.opacity = '0';
+          spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
+        } else {
+          spans[0].style.transform = 'none';
+          spans[1].style.opacity = '1';
+          spans[2].style.transform = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,545 @@
+/* ==========================================================================
+   VARIÁVEIS DE CORES E FONTES (Identidade Premium: Preto, Dourado e Vermelho)
+   ========================================================================== */
+:root {
+  --bg-color: #070707; /* Preto absoluto para dar profundidade de cinema */
+  --bg-alt: #121212; /* Cinza escuro premium para os cards e seções */
+  --text-color: #ffffff;
+  --text-muted: #a0aec0;
+
+  /* Cores de Destaque da Marca */
+  --accent-gold: #d4af37; /* Dourado metálico refinado para detalhes e neon */
+  --accent-red: #e50914; /* Vermelho esportivo de alta energia para conversão */
+
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-body: "Inter", sans-serif;
+}
+
+/* Reset Básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* Container para centralizar o conteúdo */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* Tipografia */
+h1,
+h2,
+h3,
+.logo {
+  font-family: var(--font-heading);
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.2;
+  margin-bottom: 1rem;
+}
+
+p {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+/* Ajustando a classe antiga de cor para o novo Dourado Metálico */
+.text-green {
+  color: var(--accent-gold);
+  text-shadow: 0 0 10px rgba(212, 175, 55, 0.25);
+}
+
+/* Botões com a energia do Vermelho Esportivo */
+.btn-primary {
+  display: inline-block;
+  background-color: var(--accent-red);
+  color: #ffffff;
+  padding: 14px 28px;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 4px 15px rgba(229, 9, 20, 0.3);
+  transition:
+    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  background-color: #ff1e27;
+  transform: translateY(-3px);
+  box-shadow: 0 6px 22px rgba(229, 9, 20, 0.5);
+}
+
+/* Cabeçalho (Header) */
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 24px 0;
+  z-index: 100;
+  transition:
+    background-color 0.3s ease,
+    padding 0.3s ease;
+}
+
+header.scrolled {
+  background-color: rgba(7, 7, 7, 0.95);
+  backdrop-filter: blur(10px);
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.nav-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  font-size: 1.5rem;
+  color: var(--accent-gold);
+  letter-spacing: -0.05em;
+  text-transform: uppercase;
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+.desktop-menu a {
+  color: var(--text-color);
+  text-decoration: none;
+  margin-left: 32px;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.desktop-menu a:not(.btn-primary):hover {
+  color: var(--accent-gold);
+}
+
+.desktop-menu a.active {
+  color: var(--accent-gold);
+  font-weight: 700;
+}
+
+/* Hero Section com Névoa de Spray de Tinta Sutil no Fundo */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  padding-top: 100px;
+  background:
+    radial-gradient(
+      circle at 10% 20%,
+      rgba(212, 175, 55, 0.03) 0%,
+      transparent 45%
+    ),
+    /* Spray dourado à esquerda */
+    radial-gradient(
+        circle at 90% 75%,
+        rgba(229, 9, 20, 0.04) 0%,
+        transparent 40%
+      ),
+    /* Spray vermelho atrás da foto */
+    radial-gradient(circle at 50% 50%, #111111 0%, var(--bg-color) 100%);
+  position: relative;
+}
+
+.hero-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.hero-text p {
+  max-width: 90%;
+}
+
+/* Imagem com as cores normais e um Sombreado Neon Dourado Elegante */
+.hero-image {
+  position: relative;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  object-fit: cover;
+  aspect-ratio: 4/5;
+
+  /* SEM GRAYSCALE: A imagem exibe as suas cores fortes originais diretamente */
+  filter: none;
+
+  /* Neon Dourado Limpo e Refinado: destaca a foto sem ofuscar */
+  box-shadow:
+    0 0 15px rgba(212, 175, 55, 0.25),
+    0 0 35px rgba(212, 175, 55, 0.12),
+    0 12px 40px rgba(0, 0, 0, 0.7);
+
+  transition:
+    box-shadow 0.4s ease,
+    transform 0.4s ease;
+}
+
+/* Efeito ao passar o mouse: apenas uma leve aproximação tridimensional e aumento do brilho */
+.hero-image img:hover {
+  transform: scale(1.02);
+  box-shadow:
+    0 0 25px rgba(212, 175, 55, 0.45),
+    0 0 50px rgba(212, 175, 55, 0.2),
+    0 15px 50px rgba(0, 0, 0, 0.85);
+}
+
+/* Seção Sobre */
+.about {
+  padding: 120px 0;
+  text-align: center;
+  background-color: var(--bg-alt);
+  border-top: 1px solid rgba(255, 255, 255, 0.02);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.about p {
+  margin: 0 auto;
+  max-width: 700px;
+}
+
+/* Responsividade Geral */
+@media (max-width: 900px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
+    padding-top: 40px;
+  }
+
+  .hero-text p {
+    margin: 0 auto 2rem auto;
+  }
+
+  .desktop-menu {
+    display: none;
+  }
+}
+
+/* Seção Histórias/Vozes */
+.stories {
+  padding: 100px 0;
+  background-color: var(--bg-color);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 1rem;
+}
+
+.link-more {
+  color: var(--accent-gold);
+  text-decoration: none;
+  font-weight: 500;
+  transition: opacity 0.2s ease;
+}
+
+.link-more:hover {
+  opacity: 0.8;
+}
+
+.stories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 32px;
+}
+
+.story-card {
+  background-color: var(--bg-alt);
+  border-radius: 12px;
+  overflow: hidden;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.story-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.story-image {
+  position: relative;
+  height: 240px;
+}
+
+.story-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: none; /* Imagens normais sem P&B */
+  transition: transform 0.4s ease;
+}
+
+.story-card:hover .story-image img {
+  transform: scale(1.05); /* Zoom elegante no hover */
+}
+
+.story-tag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  background-color: var(--accent-gold);
+  color: #121212;
+  padding: 6px 12px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+
+.story-tag.bg-dark {
+  background-color: #121212;
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-gold);
+}
+
+.story-content {
+  padding: 24px;
+}
+
+.story-content h3 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+
+.story-content p {
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   PÁGINA GAMEVERSE (ESPAÇO FÍSICO)
+   ========================================================================== */
+.gameverse-page {
+  background-color: #050505;
+}
+
+.hero-gameverse {
+  padding-top: 180px;
+  padding-bottom: 80px;
+  text-align: center;
+  background: radial-gradient(
+    circle at center,
+    rgba(212, 175, 55, 0.05) 0%,
+    #050505 70%
+  );
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.gameverse-header {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.equipamentos {
+  padding: 100px 0;
+}
+
+.equipamentos h2 {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.equipamentos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 40px;
+}
+
+.equip-card {
+  background-color: var(--bg-alt);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 40px 32px;
+  border-radius: 12px;
+  text-align: center;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.equip-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent-gold);
+}
+
+.equip-icon {
+  font-size: 3rem;
+  margin-bottom: 24px;
+}
+
+.equip-card h3 {
+  margin-bottom: 16px;
+  font-size: 1.5rem;
+}
+
+/* Localização */
+.localizacao {
+  padding: 80px 0 120px 0;
+}
+
+.localizacao-box {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  background-color: var(--bg-alt);
+  padding: 64px;
+  border-radius: 16px;
+  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.endereco-info,
+.horario-info {
+  margin-top: 24px;
+  padding: 16px;
+  background-color: var(--bg-color);
+  border-left: 4px solid var(--accent-gold);
+  border-radius: 0 6px 6px 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.endereco-info strong,
+.horario-info strong {
+  color: var(--text-color);
+  margin-bottom: 4px;
+}
+
+.mapa-placeholder {
+  width: 100%;
+  height: 300px;
+  background-color: var(--bg-color);
+  border: 2px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .localizacao-box {
+    grid-template-columns: 1fr;
+    padding: 32px;
+    gap: 40px;
+  }
+}
+
+/* ==========================================================================
+   MENU MOBILE (HAMBÚRGUER)
+   ========================================================================== */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 200;
+}
+
+.mobile-menu-btn span {
+  display: block;
+  width: 28px;
+  height: 3px;
+  background-color: var(--accent-gold);
+  transition: 0.3s ease;
+  border-radius: 2px;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 80%;
+  max-width: 300px;
+  height: 100vh;
+  background-color: var(--bg-alt);
+  display: flex;
+  flex-direction: column;
+  padding: 100px 32px 32px;
+  gap: 24px;
+  transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 150;
+  box-shadow: -5px 0 25px rgba(0, 0, 0, 0.9);
+}
+
+.mobile-menu.active {
+  right: 0;
+}
+
+.mobile-menu a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1.25rem;
+  font-weight: 500;
+  font-family: var(--font-heading);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding-bottom: 12px;
+}
+
+.mobile-menu a:hover {
+  color: var(--accent-gold);
+}
+
+.mobile-menu a.btn-primary {
+  border-bottom: none;
+  text-align: center;
+  margin-top: 16px;
+  color: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
+}
+
+/* Seleção de Texto Personalizada */
+::-webkit-selection {
+  background-color: var(--accent-gold);
+  color: #121212;
+}
+::selection {
+  background-color: var(--accent-gold);
+  color: #121212;
+}
