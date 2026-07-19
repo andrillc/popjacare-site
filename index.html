@@ -13,6 +13,13 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@600;700;900&display=swap" rel="stylesheet">
     
     <style>
+        /* =========================================
+           RESET E CAIXAS (Evita quebrar a tela no mobile)
+           ========================================= */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         /* Controle de Idioma UI/UX */
         .pt-text { display: none; }
         body.lang-pt .en-text { display: none; }
@@ -21,7 +28,7 @@
         .language-toggle {
             display: flex; align-items: center; background-color: #121212;
             border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 30px;
-            padding: 4px; cursor: pointer; margin-left: 20px; transition: all 0.3s ease;
+            padding: 4px; cursor: pointer; transition: all 0.3s ease;
         }
 
         .language-toggle span {
@@ -54,19 +61,29 @@
             margin: 0;
             padding: 0;
             overflow-x: hidden;
+            width: 100%;
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .container { 
+            width: 100%; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 0 20px; 
+        }
 
         /* TIPOGRAFIA */
         h1, h2, h3, h4 { font-family: var(--font-heading); color: #fff; margin-top: 0; }
         a { text-decoration: none; transition: 0.3s; }
         
         /* BOTÕES */
+        .btn-primary, .btn-outline-gold {
+            display: inline-block; padding: 14px 32px; border-radius: 8px; 
+            font-weight: 700; font-family: var(--font-heading); text-align: center;
+            text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease;
+        }
+
         .btn-primary {
-            display: inline-block; background-color: var(--accent-red); color: #fff !important;
-            padding: 14px 32px; border-radius: 8px; font-weight: 700; font-family: var(--font-heading);
-            text-transform: uppercase; letter-spacing: 1px; transition: all 0.3s ease; border: 1px solid transparent;
+            background-color: var(--accent-red); color: #fff !important; border: 1px solid transparent;
         }
         .btn-primary:hover {
             background-color: transparent; border-color: var(--accent-red); color: var(--accent-red) !important;
@@ -74,106 +91,57 @@
         }
 
         .btn-outline-gold {
-            display: inline-block; background-color: transparent; color: var(--accent-gold) !important;
-            padding: 14px 32px; border-radius: 8px; font-weight: 700; font-family: var(--font-heading);
-            text-transform: uppercase; border: 1px solid var(--accent-gold); letter-spacing: 1px; transition: all 0.3s ease;
+            background-color: transparent; color: var(--accent-gold) !important; border: 1px solid var(--accent-gold);
         }
         .btn-outline-gold:hover { background-color: var(--accent-gold); color: #000 !important; }
 
-        /* TOP SECTION (HERO + HISTÓRIA INTEGRADOS) */
+        /* HEADER E NAVBAR */
+        .main-header {
+            background-color: rgba(18,18,18,0.95); border-bottom: 1px solid var(--border-dark); 
+            position: fixed; width: 100%; top: 0; z-index: 100; padding: 15px 0; backdrop-filter: blur(10px);
+        }
+        .nav-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { color: #fff; font-family: var(--font-heading); font-size: 1.5rem; font-weight: 900; }
+        
+        .desktop-menu { display: flex; align-items: center; gap: 30px; }
+        .menu-toggle { display: none; }
+        .hamburger { display: none; font-size: 24px; color: #fff; cursor: pointer; }
+
+        /* TOP SECTION */
         .top-section {
-            padding-top: 140px; /* Espaço para a navbar fixa */
-            padding-bottom: 60px;
-            background-color: var(--bg-level-1);
-            border-bottom: 1px solid var(--border-dark);
-            position: relative;
+            padding-top: 120px; padding-bottom: 60px; background-color: var(--bg-level-1);
+            border-bottom: 1px solid var(--border-dark); position: relative;
         }
         
-        .main-header-text {
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto 50px auto;
-        }
-        .main-header-text h1 {
-            font-size: 4rem;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-        }
+        .main-header-text { text-align: center; max-width: 900px; margin: 0 auto 50px auto; }
+        .main-header-text h1 { font-size: 4rem; line-height: 1.1; margin-bottom: 20px; text-transform: uppercase; }
         .main-header-text h1 .highlight-gold { color: var(--accent-gold); }
-        .main-header-text .subtitle {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            line-height: 1.6;
-            margin: 0;
-        }
+        .main-header-text .subtitle { font-size: 1.2rem; color: var(--text-muted); line-height: 1.6; margin: 0; }
 
         /* GRID: IMAGEM AO LADO DA HISTÓRIA */
-        .hero-story-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 50px;
-            align-items: center;
-        }
+        .hero-story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
         .main-image-col {
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border-dark);
+            border-radius: 16px; overflow: hidden; border: 1px solid var(--border-dark);
             box-shadow: 0 20px 40px rgba(0,0,0,0.5);
         }
-        .main-image-col img {
-            width: 100%;
-            height: auto;
-            display: block;
-            object-fit: cover;
-        }
+        .main-image-col img { width: 100%; height: auto; display: block; object-fit: cover; }
         
-        .story-col h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            color: var(--accent-gold);
-        }
-        .story-col p {
-            color: var(--text-muted);
-            font-size: 1.1rem;
-            line-height: 1.7;
-            margin-bottom: 20px;
-        }
-        .story-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
+        .story-col h2 { font-size: 2.5rem; margin-bottom: 20px; color: var(--accent-gold); }
+        .story-col p { color: var(--text-muted); font-size: 1.1rem; line-height: 1.7; margin-bottom: 20px; }
+        .story-buttons { display: flex; gap: 15px; margin-top: 30px; flex-wrap: wrap; }
 
         /* INDICADOR DE ROLAGEM */
         .scroll-indicator {
-            text-align: center;
-            margin-top: 60px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            opacity: 0.7;
+            text-align: center; margin-top: 60px; display: flex; flex-direction: column;
+            align-items: center; color: var(--text-muted); font-size: 0.9rem;
+            text-transform: uppercase; letter-spacing: 1px; opacity: 0.7;
         }
-        .mouse-icon {
-            width: 24px; height: 36px; border: 2px solid var(--text-muted);
-            border-radius: 12px; position: relative; margin-bottom: 10px;
-        }
+        .mouse-icon { width: 24px; height: 36px; border: 2px solid var(--text-muted); border-radius: 12px; position: relative; margin-bottom: 10px; }
         .mouse-wheel {
-            width: 4px; height: 6px; background-color: var(--text-muted);
-            border-radius: 2px; position: absolute; top: 6px; left: 50%;
-            transform: translateX(-50%);
-            animation: scrollWheel 2s infinite;
+            width: 4px; height: 6px; background-color: var(--text-muted); border-radius: 2px;
+            position: absolute; top: 6px; left: 50%; transform: translateX(-50%); animation: scrollWheel 2s infinite;
         }
-        @keyframes scrollWheel {
-            0% { top: 6px; opacity: 1; }
-            100% { top: 18px; opacity: 0; }
-        }
+        @keyframes scrollWheel { 0% { top: 6px; opacity: 1; } 100% { top: 18px; opacity: 0; } }
 
         /* OS PILARES (RESTAURANTE E LOUNGE) */
         .pillars-section { padding: 100px 0; background-color: var(--bg-level-0); }
@@ -182,8 +150,7 @@
         .services-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
         .service-card {
             background-color: var(--bg-level-2); border: 1px solid var(--border-dark);
-            border-radius: 16px; padding: 50px 40px; text-align: center;
-            transition: transform 0.3s ease, border-color 0.3s;
+            border-radius: 16px; padding: 50px 40px; text-align: center; transition: transform 0.3s ease, border-color 0.3s;
         }
         .service-card:hover { transform: translateY(-10px); border-color: var(--accent-gold); }
         .service-icon { margin-bottom: 25px; display: inline-block; }
@@ -211,30 +178,70 @@
         .contact-item { display: flex; align-items: flex-start; gap: 20px; margin-bottom: 30px; }
         .contact-icon { stroke: var(--accent-red); flex-shrink: 0; }
         .contact-item h4 { margin: 0 0 5px 0; font-size: 1.2rem; }
-        .contact-item p { margin: 0; color: var(--text-muted); }
+        .contact-item p { margin: 0; color: var(--text-muted); word-break: break-word; }
         
         .map-placeholder {
             width: 100%; height: 100%; min-height: 400px; background-color: var(--bg-level-2); border-radius: 16px;
             border: 1px solid var(--border-dark); display: flex; align-items: center; justify-content: center; color: var(--text-muted);
         }
 
-        /* RESPONSIVIDADE */
+        /* =========================================
+           RESPONSIVIDADE (Celulares e Tablets)
+           ========================================= */
         @media (max-width: 900px) {
             .main-header-text h1 { font-size: 2.5rem; }
-            .hero-story-grid, .services-grid, .contact-grid { grid-template-columns: 1fr; }
-            .story-buttons { flex-direction: column; }
+            .hero-story-grid, .services-grid, .contact-grid { grid-template-columns: 1fr; gap: 30px; }
+            .story-col h2 { font-size: 2rem; }
+            .section-title { font-size: 2.2rem; margin-bottom: 40px; }
+            .pillars-section, .contact-section { padding: 60px 0; }
+            
+            /* Ajusta botões para ocupar a tela toda no celular */
+            .story-buttons, .service-card a { flex-direction: column; width: 100%; display: flex; }
+            .btn-primary, .btn-outline-gold { width: 100%; }
+        }
+
+        @media (max-width: 768px) {
+            /* Configuração do Menu Hambúrguer */
+            .hamburger { display: block; }
+            .desktop-menu {
+                display: none; flex-direction: column; position: absolute;
+                top: 100%; left: 0; width: 100%; background: rgba(18,18,18,0.98);
+                padding: 20px; text-align: center; border-bottom: 1px solid var(--border-dark);
+                box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            }
+            .menu-toggle:checked ~ .desktop-menu { display: flex; }
+            
+            .language-toggle { margin: 15px auto 0 auto; justify-content: center; width: max-content; }
+            .desktop-menu a { display: block; width: 100%; padding: 10px 0; }
+
+            .main-header-text h1 { font-size: 2.2rem; }
+            .top-section { padding-top: 100px; }
+            .contact-info-box { padding: 25px; }
+            .service-card { padding: 30px 20px; }
+            .community-banner h2 { font-size: 1.8rem; }
+            .map-placeholder { min-height: 250px; }
         }
     </style>
 </head>
 
 <body>
 
-    <!-- NAVBAR FIXA -->
-    <header id="navbar" style="background-color: rgba(18,18,18,0.95); border-bottom: 1px solid var(--border-dark); position: fixed; width: 100%; top: 0; z-index: 100; padding: 15px 0; backdrop-filter: blur(10px);">
-        <div class="container nav-content" style="display: flex; justify-content: space-between; align-items: center;">
-            <a href="index.html" class="logo" style="text-decoration: none; color: #fff; font-family: var(--font-heading); font-size: 1.5rem; font-weight: 900;">PopJacaré</a>
+    <!-- NAVBAR FIXA COM MENU HAMBÚRGUER -->
+    <header class="main-header" id="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">PopJacaré</a>
             
-            <nav class="desktop-menu" style="display: flex; align-items: center; gap: 30px;">
+            <!-- Checkbox invisível que controla o menu no celular -->
+            <input type="checkbox" id="menu-toggle" class="menu-toggle">
+            <label for="menu-toggle" class="hamburger">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </label>
+            
+            <nav class="desktop-menu">
                 <a href="subpaginas/restaurant.html" style="color: var(--text-main);"><span class="en-text">Restaurant</span><span class="pt-text">Restaurante</span></a>
                 <a href="subpaginas/gameverse.html" style="color: var(--text-main);">GameVerse</a>
                 <a href="#contato" style="color: var(--accent-gold); font-weight: bold;"><span class="en-text">Visit Us</span><span class="pt-text">Visite-nos</span></a>
@@ -251,7 +258,6 @@
     <section class="top-section">
         <div class="container">
             
-            <!-- Título Principal Centralizado no Topo -->
             <div class="main-header-text">
                 <h1>
                     <span class="en-text">Eat. Play. <span class="highlight-gold">Connect.</span></span>
@@ -263,15 +269,12 @@
                 </p>
             </div>
 
-            <!-- Grid: Imagem Principal + História -->
             <div class="hero-story-grid">
                 
-                <!-- Coluna da Esquerda: A imagem original (capa) -->
                 <div class="main-image-col">
                     <img src="img/capa.png" alt="Cenário urbano do Jacarezinho">
                 </div>
 
-                <!-- Coluna da Direita: História e Botões -->
                 <div class="story-col">
                     <h2>
                         <span class="en-text">A little about me: From Queens to Jacaré.</span>
@@ -300,7 +303,6 @@
 
             </div>
 
-            <!-- Indicador visual que existe mais conteúdo para baixo -->
             <div class="scroll-indicator">
                 <div class="mouse-icon">
                     <div class="mouse-wheel"></div>
@@ -312,7 +314,7 @@
         </div>
     </section>
 
-    <!-- EXPERIÊNCIAS (Restaurante e Lan House) -->
+    <!-- EXPERIÊNCIAS -->
     <section id="experiencias" class="pillars-section">
         <div class="container">
             <h2 class="section-title">
@@ -451,7 +453,7 @@
                     </div>
                 </div>
 
-                <a href="https://wa.me/5521999999999" target="_blank" class="btn-primary" style="margin-top: 10px; width: 100%; box-sizing: border-box; text-align: center;">
+                <a href="https://wa.me/5521999999999" target="_blank" class="btn-primary">
                     <span class="en-text">Message us on WhatsApp</span>
                     <span class="pt-text">Chamar no WhatsApp</span>
                 </a>
@@ -484,9 +486,19 @@
             document.querySelectorAll('.lang-pt').forEach(el => el.classList.toggle('active', isPt));
             
             document.documentElement.lang = isPt ? 'pt-BR' : 'en';
+            
+            // Fecha o menu hamburguer ao trocar o idioma no celular
+            document.getElementById('menu-toggle').checked = false;
         }
 
         document.getElementById('lang-btn').addEventListener('click', toggleLanguage);
+        
+        // Fecha o menu ao clicar nos links (Mobile)
+        document.querySelectorAll('.desktop-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('menu-toggle').checked = false;
+            });
+        });
     </script>
     
 </body>
