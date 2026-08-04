@@ -543,3 +543,115 @@ header.scrolled {
   background-color: var(--accent-gold);
   color: #121212;
 }
+/* Botão Flutuante de Idioma */
+.fixed-lang-btn {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  background-color: #121212;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  z-index: 9999;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+}
+
+.fixed-lang-btn:hover {
+  border-color: var(--accent-gold);
+  transform: translateY(-3px);
+}
+
+.fixed-lang-btn span {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border-radius: 20px;
+  color: #666;
+  transition: all 0.3s ease;
+}
+
+.fixed-lang-btn span.active {
+  background-color: var(--accent-gold);
+  color: #000;
+}
+/* ==========================================================================
+   BOTÃO FLUTUANTE VISIT US (MOBILE)
+   ========================================================================== */
+.floating-visit-btn {
+  display: none; /* Esconde no desktop */
+}
+
+@media (max-width: 900px) {
+  .floating-visit-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 25px; /* Alinhado com a altura do botão de idioma */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--accent-red);
+    color: #ffffff !important;
+    padding: 12px 28px;
+    border-radius: 30px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1rem;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(229, 9, 20, 0.4);
+    z-index: 9998; /* Fica logo abaixo do botão de idioma caso se cruzem */
+    transition:
+      transform 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  .floating-visit-btn:hover {
+    background-color: #ff1e27;
+    transform: translateX(-50%) translateY(-3px);
+  }
+}
+/* ==========================================================================
+   BOTÃO VISIT US AO LADO DA IMAGEM (MOBILE)
+   ========================================================================== */
+
+@media (max-width: 900px) {
+  .inline-visit-btn {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--accent-red); /* Mantém sua cor original */
+    color: #ffffff !important;
+    padding: 8px 16px; /* Menor e mais discreto que o flutuante */
+    border-radius: 20px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.85rem;
+    text-decoration: none;
+    margin-left: 15px; /* Espaço seguro entre a imagem e o botão */
+    white-space: nowrap; /* Evita que o texto quebre em duas linhas */
+    transition: background-color 0.2s ease;
+  }
+
+  .inline-visit-btn:hover {
+    background-color: #ff1e27;
+  }
+}
+/* ==========================================================================
+   BOTÃO VISIT US (Abaixo do conteúdo - MOBILE)
+   ========================================================================== */
+/* ==========================================================================
+   BOTÃO VISIT US (Abaixo do conteúdo - MOBILE)
+   ========================================================================== */
+.mobile-visit-btn {
+  display: none !important; /* Esconde no desktop */
+}
+
+@media (max-width: 900px) {
+  .mobile-visit-btn {
+    display: inline-block !important; /* Aparece no celular */
+  }
+}
