@@ -14,9 +14,17 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
 
   <style>
-    .pt-text { display: none; }
-    body.lang-pt .en-text { display: none; }
-    body.lang-pt .pt-text { display: inline-block; }
+    .pt-text {
+      display: none;
+    }
+
+    body.lang-pt .en-text {
+      display: none;
+    }
+
+    body.lang-pt .pt-text {
+      display: inline-block;
+    }
 
     .language-toggle {
       display: flex;
@@ -51,6 +59,7 @@
         align-items: center;
         position: relative;
       }
+
       .desktop-menu {
         position: absolute;
         left: 50%;
@@ -58,11 +67,35 @@
         display: flex !important;
         gap: 32px;
       }
-      .desktop-menu a { margin: 0 !important; }
-      .header-lang-wrapper { display: block !important; }
+
+      .desktop-menu a {
+        margin: 0 !important;
+      }
+
+      .header-lang-wrapper {
+        display: block !important;
+      }
     }
+
+    /* Oculta botão flutuante de idioma no Desktop */
+    .fixed-lang-btn {
+      display: none !important;
+    }
+
     @media (max-width: 900px) {
-      .header-lang-wrapper { display: none !important; }
+      .header-lang-wrapper {
+        display: none !important;
+      }
+
+      /* Esconde botão de idioma do menu hambúrguer */
+      #lang-btn-mobile {
+        display: none !important;
+      }
+
+      /* Exibe botão flutuante no Celular */
+      .fixed-lang-btn {
+        display: flex !important;
+      }
     }
 
     .story-page {
@@ -80,15 +113,60 @@
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     }
 
+    /* Bloco do Título "About Me" Branco com detalhes Dourado e Vermelho */
     .story-title {
       text-align: center;
-      margin-bottom: 40px;
+      margin-bottom: 45px;
+      position: relative;
     }
 
+    /* Ilustração do Jacaré */
+    .jacare-draw-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+
+    .jacare-svg {
+      width: 110px;
+      height: 55px;
+      filter: drop-shadow(0 0 10px rgba(230, 57, 70, 0.4)) drop-shadow(0 0 18px rgba(212, 175, 55, 0.3));
+      transition: transform 0.4s ease;
+    }
+
+    .story-title:hover .jacare-svg {
+      transform: scale(1.08);
+    }
+
+    /* Título Branco em Destaque */
     .story-title h1 {
-      font-size: 3rem;
+      font-size: 3.2rem;
+      color: #ffffff !important; /* Branco puro */
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 12px;
+      display: inline-block;
+      text-shadow: 0 0 20px rgba(255, 255, 255, 0.2), 0 0 35px rgba(230, 57, 70, 0.25);
+    }
+
+    /* Linha decorativa abaixo do título em Gradiente Dourado + Vermelho */
+    .story-title h1::after {
+      content: '';
+      display: block;
+      width: 90px;
+      height: 3px;
+      margin: 12px auto 0 auto;
+      background: linear-gradient(90deg, var(--accent-gold), var(--accent-red));
+      border-radius: 3px;
+      box-shadow: 0 0 10px rgba(230, 57, 70, 0.6);
+    }
+
+    .story-title p {
       color: var(--accent-gold);
-      margin-bottom: 10px;
+      font-weight: 500;
+      font-size: 1.25rem;
+      margin-top: 5px;
     }
 
     .story-content p {
@@ -122,12 +200,17 @@
       position: relative;
       overflow: hidden;
     }
+
     .welcome-premium-box::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; height: 3px;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
       background: linear-gradient(90deg, transparent, var(--accent-red), transparent);
     }
+
     .welcome-premium-box h2 {
       font-size: 2.4rem;
       color: #ffffff;
@@ -135,6 +218,7 @@
       letter-spacing: 1px;
       margin-bottom: 15px;
     }
+
     .welcome-premium-box h2 .sub-text {
       display: block;
       font-size: 1.35rem;
@@ -147,11 +231,20 @@
     }
 
     @media (max-width: 768px) {
-      .story-container { padding: 30px 20px; }
-      .welcome-premium-box h2 { font-size: 1.8rem; }
-      .welcome-premium-box h2 .sub-text { font-size: 1.1rem; }
+      .story-container {
+        padding: 30px 20px;
+      }
+
+      .welcome-premium-box h2 {
+        font-size: 1.8rem;
+      }
+
+      .welcome-premium-box h2 .sub-text {
+        font-size: 1.1rem;
+      }
     }
   </style>
+
 </head>
 
 <body>
@@ -201,7 +294,13 @@
 
   <section class="story-page">
     <div class="container">
-      <div class="story-container">
+
+      <!-- CAPA PREMIUM -->
+      <div style="width: 100%; max-width: 800px; margin: 0 auto 30px auto; border-radius: 16px; overflow: hidden; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);">
+        <img src="../img/ronnie-img.webp" alt="Capa da História do Ronnie" style="width: 100%; height: auto; display: block;">
+      </div>
+
+      <div class="story-container reveal">
         <div class="story-title">
           <h1>
             <span class="en-text">About Me</span>
@@ -275,52 +374,14 @@
     </div>
   </section>
 
-  <!-- SCRIPT DO MENU MOBILE E DO TRADUTOR -->
-  <script>
-    function toggleLanguage() {
-      const body = document.body;
-      body.classList.toggle('lang-pt');
+  <!-- Botão de Idioma Fixo -->
+  <div class="fixed-lang-btn" id="global-lang-btn">
+    <span class="lang-en active">EN</span>
+    <span class="lang-pt">PT</span>
+  </div>
 
-      const isPt = body.classList.contains('lang-pt');
-      document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('active', !isPt));
-      document.querySelectorAll('.lang-pt').forEach(el => el.classList.toggle('active', isPt));
+  <script src="../app.js"></script>
 
-      document.documentElement.lang = isPt ? 'pt-BR' : 'en';
-    }
-
-    document.getElementById('lang-btn').addEventListener('click', toggleLanguage);
-    document.getElementById('lang-btn-mobile').addEventListener('click', toggleLanguage);
-
-    const btnMobile = document.querySelector('.mobile-menu-btn');
-    const menuMobile = document.querySelector('.mobile-menu');
-
-    if (btnMobile && menuMobile) {
-      btnMobile.addEventListener('click', () => {
-        menuMobile.classList.toggle('active');
-        const spans = btnMobile.querySelectorAll('span');
-        if (menuMobile.classList.contains('active')) {
-          spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
-          spans[1].style.opacity = '0';
-          spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
-        } else {
-          spans[0].style.transform = 'none';
-          spans[1].style.opacity = '1';
-          spans[2].style.transform = 'none';
-        }
-      });
-
-      const linksMobile = menuMobile.querySelectorAll('a');
-      linksMobile.forEach(link => {
-        link.addEventListener('click', () => {
-          menuMobile.classList.remove('active');
-          const spans = btnMobile.querySelectorAll('span');
-          spans[0].style.transform = 'none';
-          spans[1].style.opacity = '1';
-          spans[2].style.transform = 'none';
-        });
-      });
-    }
-  </script>
 </body>
 
 </html>
