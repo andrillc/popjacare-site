@@ -14,43 +14,81 @@
 
   <style>
     /* Controle de Idioma UI/UX */
-    .pt-text { display: none; }
-    body.lang-pt .en-text { display: none; }
-    body.lang-pt .pt-text { display: inline-block; }
+    .pt-text {
+      display: none;
+    }
+
+    body.lang-pt .en-text {
+      display: none;
+    }
+
+    body.lang-pt .pt-text {
+      display: inline-block;
+    }
 
     .language-toggle {
-      display: flex; align-items: center; background-color: #121212;
-      border: 1px solid rgba(212, 175, 55, 0.3); border-radius: 30px;
-      padding: 4px; cursor: pointer; transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      background-color: #121212;
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 30px;
+      padding: 4px;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
+
     .language-toggle span {
-      padding: 6px 12px; font-size: 0.85rem; font-weight: 600;
-      border-radius: 20px; color: var(--text-muted); transition: all 0.3s ease;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border-radius: 20px;
+      color: var(--text-muted);
+      transition: all 0.3s ease;
     }
+
     .language-toggle span.active {
-      background-color: var(--accent-gold); color: #121212;
+      background-color: var(--accent-gold);
+      color: #121212;
     }
 
     /* Alinhamento da Navbar */
     @media (min-width: 901px) {
-      .nav-content { display: flex !important; justify-content: space-between; align-items: center; position: relative; }
-      .desktop-menu { position: absolute; left: 50%; transform: translateX(-50%); display: flex !important; gap: 32px; }
-      .header-lang-wrapper { display: block !important; }
+      .nav-content {
+        display: flex !important;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+      }
+
+      .desktop-menu {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex !important;
+        gap: 32px;
+      }
+
+      .header-lang-wrapper {
+        display: block !important;
+      }
     }
+
     @media (max-width: 900px) {
-      .header-lang-wrapper { display: none !important; }
+      .header-lang-wrapper {
+        display: none !important;
+      }
     }
 
     /* =========================================
        UI/UX: SISTEMA DE CORES ESCURAS (LAYERS)
        ========================================= */
     :root {
-      --bg-level-0: #080808; 
-      --bg-level-1: #121212; 
-      --bg-level-2: #1c1c1c; 
-      --bg-level-3: #262626; 
+      --bg-level-0: #080808;
+      --bg-level-1: #121212;
+      --bg-level-2: #1c1c1c;
+      --bg-level-3: #262626;
       --border-dark: #2a2a2a;
-      --accent-gamer: #d4af37; 
+      --accent-gamer: #d4af37;
     }
 
     body {
@@ -66,7 +104,7 @@
       background: radial-gradient(circle at 50% 0%, #1a1a1a 0%, var(--bg-level-0) 70%);
       border-bottom: 1px solid var(--border-dark);
     }
-    
+
     .hero-title {
       font-size: 4.5rem;
       font-family: var(--font-heading);
@@ -77,7 +115,7 @@
       font-weight: 900;
       line-height: 1.1;
     }
-    
+
     .hero-title span {
       color: var(--accent-gamer);
       text-shadow: 0 0 30px rgba(212, 175, 55, 0.4);
@@ -110,14 +148,17 @@
       text-align: left;
       position: relative;
       overflow: hidden;
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       z-index: 1;
     }
 
     .feature-item::before {
       content: '';
       position: absolute;
-      top: 0; left: -100%; width: 50%; height: 100%;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
       background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.08), transparent);
       transform: skewX(-20deg);
       transition: all 0.5s ease;
@@ -197,7 +238,7 @@
 
     .zone-card:hover {
       border-color: var(--accent-gamer);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
       transform: scale(1.03);
     }
 
@@ -281,8 +322,12 @@
       overflow: hidden;
       border: 1px solid var(--border-dark);
     }
-    
-    .gallery-item:nth-child(1) { grid-column: span 2; grid-row: span 2; height: 515px; }
+
+    .gallery-item:nth-child(1) {
+      grid-column: span 2;
+      grid-row: span 2;
+      height: 515px;
+    }
 
     .gallery-item img {
       width: 100%;
@@ -319,11 +364,26 @@
     }
 
     @media (max-width: 900px) {
-      .hero-title { font-size: 3rem; }
-      .features-bar { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-      .gallery-item:nth-child(1) { grid-column: span 2; height: 300px; }
-      .zone-content { padding: 30px 20px; }
+      .hero-title {
+        font-size: 3rem;
+      }
+
+      .features-bar {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery-item:nth-child(1) {
+        grid-column: span 2;
+        height: 300px;
+      }
+
+      .zone-content {
+        padding: 30px 20px;
+      }
     }
   </style>
 </head>
@@ -385,7 +445,7 @@
 
       <!-- Features interativas e vibrantes -->
       <div class="features-bar">
-        
+
         <div class="feature-item">
           <!-- SVG Ícone 1: Raio minimalista (Ping) -->
           <div class="feature-icon">
@@ -456,7 +516,7 @@
       </div>
 
       <div class="zones-grid">
-        
+
         <!-- PC Gamer -->
         <div class="zone-card">
           <img src="https://images.unsplash.com/photo-1598550476439-6847785fcea6?q=80&w=600&auto=format&fit=crop" alt="PC Gamer Setup" class="zone-img">
@@ -500,7 +560,7 @@
   <!-- JOGOS E FOTOS DO AMBIENTE -->
   <section class="games-gallery-section">
     <div class="container">
-      
+
       <div class="section-header" style="margin-bottom: 50px;">
         <h2>
           <span class="en-text">Available Games</span>
@@ -558,43 +618,13 @@
     </div>
   </section>
 
-  <!-- SCRIPT -->
-  <script>
-    // Tradutor
-    function toggleLanguage() {
-      const body = document.body;
-      body.classList.toggle('lang-pt');
+  <!-- Botão de Idioma Fixo -->
+  <div class="fixed-lang-btn" id="global-lang-btn">
+    <span class="lang-en active">EN</span>
+    <span class="lang-pt">PT</span>
+  </div>
 
-      const isPt = body.classList.contains('lang-pt');
-      document.querySelectorAll('.lang-en').forEach(el => el.classList.toggle('active', !isPt));
-      document.querySelectorAll('.lang-pt').forEach(el => el.classList.toggle('active', isPt));
-
-      document.documentElement.lang = isPt ? 'pt-BR' : 'en';
-    }
-
-    document.getElementById('lang-btn').addEventListener('click', toggleLanguage);
-    document.getElementById('lang-btn-mobile').addEventListener('click', toggleLanguage);
-
-    // Menu Mobile
-    const btnMobile = document.querySelector('.mobile-menu-btn');
-    const menuMobile = document.querySelector('.mobile-menu');
-
-    if (btnMobile && menuMobile) {
-      btnMobile.addEventListener('click', () => {
-        menuMobile.classList.toggle('active');
-        const spans = btnMobile.querySelectorAll('span');
-        if (menuMobile.classList.contains('active')) {
-          spans[0].style.transform = 'rotate(45deg) translate(6px, 6px)';
-          spans[1].style.opacity = '0';
-          spans[2].style.transform = 'rotate(-45deg) translate(7px, -7px)';
-        } else {
-          spans[0].style.transform = 'none';
-          spans[1].style.opacity = '1';
-          spans[2].style.transform = 'none';
-        }
-      });
-    }
-  </script>
+  <script src="../app.js"></script>
 </body>
 
 </html>
